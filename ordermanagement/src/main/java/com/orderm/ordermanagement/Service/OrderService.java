@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.orderm.ordermanagement.Entities.Customer;
-import com.orderm.ordermanagement.Entities.Order;
+import com.orderm.ordermanagement.Entities.Oorder;
 import com.orderm.ordermanagement.Entities.OrderItem;
 import com.orderm.ordermanagement.Entities.Product;
 import com.orderm.ordermanagement.Repository.CustomerRepository;
@@ -25,14 +25,18 @@ import com.orderm.ordermanagement.Repository.ProductRepository;
         this.productRepository = productRepository;
     }
     
-    public Order placeOrder(Long customerId, List<OrderItem> orderItems) 
+    public Oorder placeOrder(Long customerId, List<OrderItem> orderItems) 
     {
         Customer customer = customerRepository.findById(customerId).orElseThrow();
+        System.out.println("Customer: " + customer.getEmail());
         BigDecimal totalAmount = BigDecimal.ZERO;
         
-        for (OrderItem item : orderItems) {
+        for (OrderItem item : orderItems) 
+        {
             Product product = productRepository.findById(item.getProduct().getId()).orElseThrow();
-            if (product.getStock() < item.getQuantity()) {
+            System.out.println("price"+product.getStock());
+            if (product.getStock() < item.quantity) 
+            {
                 throw new RuntimeException("Insufficient stock for product: " + product.getName());
             }
             product.setStock(product.getStock() - item.getQuantity());
@@ -40,11 +44,11 @@ import com.orderm.ordermanagement.Repository.ProductRepository;
             totalAmount = totalAmount.add(product.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
         }
         
-        Order order = new Order();
-        order.setCustomer(customer);
-        order.setOrderItems(orderItems);
-        order.setTotalAmount(totalAmount);
-        return orderRepository.save(order);
+        Oorder co = new Oorder();
+        co.setCustomer(customer);
+        co.setOrderItems(orderItems);
+        co.setTotalAmount(totalAmount);
+        return orderRepository.save(co);
     }
     public List<Object[]> getTotalOrdersByCustomer() {
         return orderRepository.countOrdersByCustomer();

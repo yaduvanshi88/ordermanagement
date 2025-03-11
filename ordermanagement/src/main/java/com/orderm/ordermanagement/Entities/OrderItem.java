@@ -13,15 +13,17 @@ public class OrderItem {
     public Long id;
     
     @ManyToOne
-    private Product product;
+    public Product product;
     
-    private Integer quantity;
+    public Integer quantity;
 
-    public Long getId() {
+    public Long getId() 
+    {
         return id;
     }
 
-    public Product getProduct() {
+    public Product getProduct() 
+    {
         return product;
     }
 
@@ -46,7 +48,8 @@ public class OrderItem {
         this.product = product;
         this.quantity = quantity;
     }
-    public OrderItem() {
+    public OrderItem() 
+    {
        
     }
    

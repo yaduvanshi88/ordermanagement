@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 @Entity
- public class Order {
+ public class Oorder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,8 +35,8 @@ import jakarta.persistence.OneToMany;
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
-    public void setOrderItems(List<OrderItem> orderItems2) {
-        this.orderItems = orderItems2;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
     public BigDecimal getTotalAmount() {
         return totalAmount;
@@ -44,13 +44,13 @@ import jakarta.persistence.OneToMany;
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
-    public Order(Long id, Customer customer, List<OrderItem> orderItems, BigDecimal totalAmount) {
+    public Oorder(Long id, Customer customer, List<OrderItem> orderItems, BigDecimal totalAmount) {
         this.id = id;
         this.customer = customer;
         this.orderItems = orderItems;
         this.totalAmount = totalAmount;
     }
-    public Order() {
+    public Oorder() {
         
     }
     

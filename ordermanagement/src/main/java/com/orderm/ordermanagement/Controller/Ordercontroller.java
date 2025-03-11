@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orderm.ordermanagement.Entities.Order;
+import com.orderm.ordermanagement.Entities.Oorder;
 import com.orderm.ordermanagement.Entities.OrderItem;
 import com.orderm.ordermanagement.Service.OrderService;
 
@@ -22,7 +22,7 @@ class OrderController
      OrderService service;
     
      @PostMapping("/{customerId}")
-    public Order placeOrder(@PathVariable Long customerId, @RequestBody List<OrderItem> orderItems) {
+    public Oorder placeOrder(@PathVariable Long customerId, @RequestBody List<OrderItem> orderItems) {
         return service.placeOrder(customerId, orderItems);
     }
     @GetMapping("/report/total-orders")

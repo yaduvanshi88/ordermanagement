@@ -8,10 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
- public class Product {
+ public class Product 
+ {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
     
     private String name;
     
@@ -19,7 +20,8 @@ import jakarta.persistence.Id;
     
     private Integer stock;
 
-    public Long getId() {
+    public Long getId() 
+    {
         return id;
     }
 
